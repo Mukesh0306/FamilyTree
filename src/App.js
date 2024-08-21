@@ -4,20 +4,20 @@ import NavComponent from './Nav';  // Import the NavComponent
 import Tree from './Tree';  // Import the Tree component
 import TreeBranches from './TreeBranches'; // Import the TreeBranches component
 import 'bootstrap/dist/css/bootstrap.min.css';  // Import Bootstrap CSS
-import 'orgchart/dist/css/jquery.orgchart.css';
+import './App.css'; // Import your custom CSS
 
 function App() {
   return (
     <Router>
-      <div>
+      <div className="app-container">
         {/* Navigation Bar */}
         <NavComponent />
         
-        {/* Main Content: Tree Structure */}
-        <div className="container">
+        {/* Main Content */}
+        <div className="content">
           <h1 className="text-center my-4">Family Tree</h1>
           
-          {/* Display Tree and TreeBranches side by side */}
+          {/* Flexbox layout for Tree and TreeBranches */}
           <div className="row">
             <div className="col-md-6">
               <Tree />
@@ -27,7 +27,7 @@ function App() {
             </div>
           </div>
         </div>
-        
+
         {/* Routes for each branch */}
         <Routes>
           <Route path="/parents" element={<div>Parents Page</div>} />

@@ -22,10 +22,17 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  padding: 20px; /* Added padding for better spacing */
 }
 
 .App-link {
   color: #61dafb;
+  text-decoration: none; /* Added to remove underline */
+  font-weight: bold; /* Make links more prominent */
+}
+
+.App-link:hover {
+  text-decoration: underline; /* Underline on hover for better UX */
 }
 
 @keyframes App-logo-spin {
@@ -34,5 +41,17 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+/* Responsive Design Adjustments */
+@media (max-width: 768px) {
+  .App-header {
+    font-size: calc(8px + 2vmin); /* Adjust font size for smaller screens */
+    padding: 10px; /* Reduce padding for smaller screens */
+  }
+
+  .App-logo {
+    height: 30vmin; /* Adjust logo size for smaller screens */
   }
 }
