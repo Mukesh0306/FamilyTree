@@ -14,13 +14,9 @@ function NavComponent() {
             alt="Tree Design" 
             style={{ width: '30px', height: '30px', marginRight: '10px' }} 
           />
-          Family Tree
+          Ramanna & Family
         </Link>
-        <div className="navbar-links">
-          <Link className="nav-link" to="/end">Manjunath</Link>
-          <Link className="nav-link" to="/info">Mukesh</Link>
-          <Link className="nav-link" to="/BioData">Praveen</Link>
-        </div>
+        
       </div>
     </nav>
   );
