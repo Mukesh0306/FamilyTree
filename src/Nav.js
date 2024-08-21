@@ -12,7 +12,7 @@ function NavComponent() {
     <Navbar expand="lg" className="custom-navbar mb-3">
       <Container fluid>
       <img
-          src="/TreeDesign.jpg"
+          src={`${process.env.PUBLIC_URL}/TreeDesign.jpg`} 
           alt="Logo"
           style={{ width: '50px', height: '50px', marginRight: '10px' }} // Adjust size and margin
         />

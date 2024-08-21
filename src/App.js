@@ -20,6 +20,7 @@ function App() {
           {/* Flexbox layout for Tree and TreeBranches */}
           <div className="row">
             <div className="col-md-6">
+              
               <Tree />
             </div>
             <div className="col-md-6">
