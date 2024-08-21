@@ -1,43 +1,34 @@
-/* nav.css */
+/* Navbar.css */
 
-/* Customize the Navbar background and text colors */
-.custom-navbar {
-    background-color: rgb(105, 118, 92);  /* Custom background color */
-    color: white;               /* Custom text color */
-  }
-  
-  /* Navbar brand text color */
-  .custom-navbar .navbar-brand {
-    color: white;
-    font-weight: bold;
-    font-size: 1.5rem;
-  }
-  
-  /* Navbar links color */
-  .custom-navbar .nav-link {
-    color: white;
-  }
-  
-  /* Hover effect on nav links */
-  .custom-navbar .nav-link:hover {
-    color: #ffd700;  /* Gold color on hover */
-  }
-  
-  /* Customize the search form input */
-  .custom-navbar .form-control {
-    border-radius: 5px;
-    border-color: #ffd700;  /* Gold border */
-  }
-  
-  /* Customize the search button */
-  .custom-navbar .btn-outline-success {
-    color: white;
-    border-color: white;
-  }
-  
-  .custom-navbar .btn-outline-success:hover {
-    background-color: #ffd700;  /* Gold background on hover */
-    border-color: #ffd700;
-    color: black;
-  }
-  
+.navbar {
+  background-color: rgb(105, 118, 92);
+  padding: 1rem;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.nav-link:hover {
+  text-decoration: underline;
+}
