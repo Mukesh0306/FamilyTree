@@ -1,74 +1,93 @@
-import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import React, { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const SpeechRecog = () => {
   const [transcript, setTranscript] = useState("");
-  const [listening, setListening] = useState(false);
-  const navigate = useNavigate(); // For navigation
+  const navigate = useNavigate();
+  const recognitionRef = useRef(null); // Stores the recognition instance
+  const isRecognitionStarted = useRef(false); // Keeps track of whether recognition is running
 
-  const recognition = new window.webkitSpeechRecognition();
-  recognition.continuous = true;
-  recognition.interimResults = false;
-  recognition.lang = "en-US";
+  useEffect(() => {
+    // Check if the browser supports SpeechRecognition
+    if (!('webkitSpeechRecognition' in window)) {
+      console.error("Speech Recognition API not supported in this browser.");
+      return;
+    }
 
-  const startListening = () => {
-    setListening(true);
-    recognition.start();
+    // Initialize SpeechRecognition
+    const recognition = new window.webkitSpeechRecognition();
+    recognition.continuous = true;
+    recognition.interimResults = false;
+    recognition.lang = "en-US";
+    recognitionRef.current = recognition;
+
+    const startRecognition = () => {
+      if (!isRecognitionStarted.current) {
+        recognition.start();
+        isRecognitionStarted.current = true;
+        console.log("Speech recognition started");
+      }
+    };
+
+    const stopRecognition = () => {
+      if (isRecognitionStarted.current) {
+        recognition.stop();
+        isRecognitionStarted.current = false;
+        console.log("Speech recognition stopped");
+      }
+    };
 
     recognition.onresult = (event) => {
       const speechResult = event.results[event.resultIndex][0].transcript.toLowerCase().trim();
       setTranscript(speechResult);
+      console.log("Speech recognized:", speechResult);
 
-      // Command Recognition for navigation
-      if (speechResult.includes("parents")) {
-        navigate("/parents");
-      } else if (speechResult.includes("manjunath")) {
+      // Handle navigation based on speech result
+      if (speechResult.includes("manjunath")) {
+        console.log("Navigating to /manjunath");
         navigate("/manjunath");
-      } else if (speechResult.includes("mukesh")) {
-        navigate("/mukesh");
       } else if (speechResult.includes("praveen")) {
+        console.log("Navigating to /praveen");
         navigate("/praveen");
+      } else if (speechResult.includes("mukesh")) {
+        console.log("Navigating to /mukesh");
+        navigate("/mukesh");
+      } else if (speechResult.includes("parents")) {
+        console.log("Navigating to /parents");
+        navigate("/parents");
+      } else if (speechResult.includes("home")) {
+        console.log("Navigating to /");
+        navigate("/");
+      } else {
+        console.log("No matching command found");
       }
     };
 
     recognition.onerror = (event) => {
-      console.error(event.error);
+      console.error("Speech recognition error:", event.error);
     };
-  };
 
-  const stopListening = () => {
-    setListening(false);
-    recognition.stop();
-  };
+    recognition.onend = () => {
+      console.log("Speech recognition ended unexpectedly, restarting...");
+      startRecognition(); // Automatically restart recognition when it ends
+    };
+
+    startRecognition(); // Start listening when the component is mounted
+
+    // Clean up recognition when the component unmounts
+    return () => {
+      stopRecognition();
+    };
+  }, [navigate]);
 
   return (
     <div style={{ textAlign: "center", marginTop: "50px" }}>
-      <h1>Voice Navigation </h1>
-      
-      {/* Start/Stop button with color change */}
-      <div>
-        <button
-          onClick={listening ? stopListening : startListening}
-          style={{
-            backgroundColor: listening ? "blue" : "red",
-            color: "white",
-            padding: "10px 20px",
-            border: "none",
-            borderRadius: "5px",
-            cursor: "pointer"
-          }}
-        >
-          {listening ? "Stop Listening" : "Start Listening"}
-        </button>
-      </div>
-      
-      <p>Speak: "Parents", "Manjunath", "Mukesh", or "Praveen"</p>
+      <h1>Voice Navigation App</h1>
 
-      {/* Buttons for Other Users */}
-      <div style={{ marginTop: "20px" }}>
-        
-      </div>
+      {/* Instructions */}
+      <p>Speak: "Home", "Parents", "Manjunath", "Mukesh", or "Praveen"</p>
 
+      {/* Display transcript */}
       <textarea
         value={transcript}
         rows="3"
