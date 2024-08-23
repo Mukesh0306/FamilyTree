@@ -8,13 +8,11 @@ const SpeechRecog = () => {
   const isRecognitionStarted = useRef(false); // Keeps track of whether recognition is running
 
   useEffect(() => {
-    // Check if the browser supports SpeechRecognition
     if (!('webkitSpeechRecognition' in window)) {
       console.error("Speech Recognition API not supported in this browser.");
       return;
     }
 
-    // Initialize SpeechRecognition
     const recognition = new window.webkitSpeechRecognition();
     recognition.continuous = true;
     recognition.interimResults = false;
@@ -42,7 +40,6 @@ const SpeechRecog = () => {
       setTranscript(speechResult);
       console.log("Speech recognized:", speechResult);
 
-      // Handle navigation based on speech result
       if (speechResult.includes("manjunath")) {
         console.log("Navigating to /manjunath");
         navigate("/manjunath");
@@ -74,7 +71,6 @@ const SpeechRecog = () => {
 
     startRecognition(); // Start listening when the component is mounted
 
-    // Clean up recognition when the component unmounts
     return () => {
       stopRecognition();
     };
@@ -85,7 +81,7 @@ const SpeechRecog = () => {
       <h1>Voice Navigation App</h1>
 
       {/* Instructions */}
-      <p>Speak: "Home", "Parents", "Manjunath", "Mukesh", or "Praveen"</p>
+      <p>Speak: "Parents", "Manjunath", "Mukesh", "Praveen", or "Home"</p>
 
       {/* Display transcript */}
       <textarea
