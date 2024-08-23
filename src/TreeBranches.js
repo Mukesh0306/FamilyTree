@@ -1,6 +1,6 @@
 import React from 'react';
 import './TreeBranches.css';  // Assuming you will handle the custom styling
-
+import {  Link } from "react-router-dom";
 const TreeBranches = () => {
   return (
     <div className="tree-container">
@@ -12,13 +12,14 @@ const TreeBranches = () => {
               <li>
                 <details>
                   <summary>Lakshmi (Mother)</summary>
-                  
+                  <Link to="/parents"><button>Go to Parents Page</button></Link>
                   <ul>
                     <li>
                       <details>
                         <summary>Munjunath (Project Manager)</summary>
                         <ul>
                           <li>Priya (Wife)</li>
+                          <Link to="/manjunath"><button>Go to Manjunath Page</button></Link>
                           <img 
             src={`${process.env.PUBLIC_URL}/TreeDesign.jpg`} 
             alt="Tree Design" 
@@ -32,6 +33,7 @@ const TreeBranches = () => {
                         <summary>Mukesh (Software Engineer)</summary>
                         <ul>
                           <li>Bhagi (Partner)</li>
+                          <Link to="/mukesh"><button>Go to Mukesh Page</button></Link>
                           <img 
             src={`${process.env.PUBLIC_URL}/TreeDesign.jpg`} 
             alt="Tree Design" 
@@ -46,6 +48,7 @@ const TreeBranches = () => {
                         <ul>
                           <li>Sunitha (Wife)</li>
                           <li>Janu (Daughter)</li>
+                         <Link to="/praveen"><button>Go to Praveen Page</button></Link>
                           <img 
             src={`${process.env.PUBLIC_URL}/janu.jpg`} 
             alt="Tree Design" 
