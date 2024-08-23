@@ -1,24 +1,24 @@
+/* TreeBranches.css */
 .tree-container {
-    padding: 10px;
-    font-family: Arial, sans-serif;
-  }
-  
-  .tree ul {
-    list-style-type: none;
-    margin-left: 20px;
-  }
-  
-  .tree summary {
-    cursor: pointer;
-    font-weight: bold;
-    padding: 5px 0;
-  }
-  
-  .tree details > summary {
-    padding-left: 10px;
-  }
-  
-  .tree li {
-    margin-top: 5px;
-  }
-  
+  padding: 10px;
+  font-family: Arial, sans-serif;
+}
+
+.tree ul {
+  list-style-type: none;
+  margin-left: 20px;
+}
+
+.tree summary {
+  cursor: pointer;
+  font-weight: bold;
+  padding: 5px 0;
+}
+
+.tree details > summary {
+  padding-left: 10px;
+}
+
+.tree li {
+  margin-top: 5px;
+}

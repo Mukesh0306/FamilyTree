@@ -1,34 +1,42 @@
-/* Navbar.css */
+/* Nav.css */
 
-.navbar {
-  background-color: rgb(105, 118, 92);
-  padding: 1rem;
-}
-
-.navbar-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.navbar-brand {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: white;
-  text-decoration: none;
-}
-
-.navbar-links {
-  display: flex;
-  gap: 1rem;
-}
-
-.nav-link {
-  color: white;
-  text-decoration: none;
-  font-size: 1rem;
-}
-
-.nav-link:hover {
-  text-decoration: underline;
-}
+.nav-component {
+	background-color: rgb(76, 83, 139) !important; /* Light blue background for the nav */
+	padding: 10px 20px; /* Padding for nav */
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Shadow effect */
+	width: 100%; /* Full width */
+	position: fixed; /* Fixes the nav at the top */
+	top: 0;
+	left: 0;
+	z-index: 1000; /* Stays above other content */
+  }
+  
+  .nav-component ul {
+	list-style-type: none; /* Removes default bullet points */
+	margin: 0;
+	padding: 0;
+	display: flex; /* Flexbox for alignment */
+	justify-content: center; /* Center the items */
+  }
+  
+  .nav-component li {
+	margin: 0 15px; /* Space between items */
+  }
+  
+  .nav-component a {
+	text-decoration: none; /* No underline for links */
+	color: rgb(76, 83, 139) !important; /* Orange text color for all links */
+	font-size: 16px; /* Font size */
+	font-weight: bold; /* Bold text */
+	padding: 8px 16px; /* Padding inside links */
+	border-radius: 4px; /* Rounded corners */
+	background-color: #f5f3f2 !important; /* Light blue background for all links */
+	transition: background-color 0.3s, color 0.3s; /* Smooth color transition */
+  }
+  
+  
+  .nav-component a:hover {
+	background-color: #faf7f6 !important; /* Slightly darker light blue on hover */
+	color: #69615f !important; /* Orange text color on hover */
+  }
+  
