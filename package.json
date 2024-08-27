@@ -4,10 +4,12 @@
   "homepage": "https://Mukesh0306.github.io/FamilyTree",
   "private": true,
   "dependencies": {
+    "@supabase/supabase-js": "^2.45.2",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "bootstrap": "^5.3.3",
+    "firebase": "^10.13.0",
     "gh-pages": "^6.1.1",
     "jquery": "^3.7.1",
     "orgchart": "^4.0.1",

@@ -62,6 +62,8 @@ const SpeechRecog = () => {
 
     recognition.onerror = (event) => {
       console.error("Speech recognition error:", event.error);
+      // Implement error handling logic here, such as retrying recognition or providing feedback to the user
+      startRecognition(); // Automatically restart recognition on errors
     };
 
     recognition.onend = () => {

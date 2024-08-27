@@ -1,0 +1,56 @@
+.mukesh-container {
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+  .mukesh-input-container {
+    margin-bottom: 20px;
+  }
+  
+  .mukesh-input {
+    margin-right: 10px;
+    padding: 8px;
+    width: 200px;
+  }
+  
+  .mukesh-button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .mukesh-button-add {
+    background-color: blue;
+    color: white;
+  }
+  
+  .mukesh-button-update {
+    background-color: green;
+    color: white;
+  }
+  
+  .mukesh-button-delete,
+  .mukesh-button-cancel {
+    background-color: red;
+    color: white;
+  }
+  
+  .mukesh-button-edit {
+    background-color: orange;
+    color: white;
+  }
+  
+  .mukesh-list-item {
+    margin-bottom: 20px;
+  }
+  
+  .mukesh-button-back {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: blue;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
