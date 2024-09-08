@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from './supabaseClient';
+import './Parents.css';
 
 const Parents = () => {
   const navigate = useNavigate();
@@ -77,87 +78,69 @@ const Parents = () => {
   };
 
   return (
-    <div style={{ textAlign: "center", marginTop: "50px" }}>
-      <h1>Parents</h1>
+    <div className="container">
+      <h1 className="title">Parents</h1>
 
-      {/* Input fields for adding new or editing existing data */}
-      <div style={{ marginBottom: "20px" }}>
+      <div className="input-container">
         <input 
           type="text" 
           placeholder="Enter Name" 
           value={name} 
           onChange={(e) => setName(e.target.value)} 
-          style={{ marginRight: '10px', padding: '8px', width: '200px' }}
+          className="input-field"
         />
         <input 
           type="text" 
           placeholder="Enter Address" 
           value={address} 
           onChange={(e) => setAddress(e.target.value)} 
-          style={{ marginRight: '10px', padding: '8px', width: '200px' }}
+          className="input-field"
         />
         <input 
           type="text" 
           placeholder="Enter Phone Number" 
           value={phoneNumber} 
           onChange={(e) => setPhoneNumber(e.target.value)} 
-          style={{ marginRight: '10px', padding: '8px', width: '200px' }}
+          className="input-field"
         />
         <input 
           type="text" 
           placeholder="Enter Relation" 
           value={relation} 
           onChange={(e) => setRelation(e.target.value)} 
-          style={{ marginRight: '10px', padding: '8px', width: '200px' }}
+          className="input-field"
         />
         {editingId ? (
           <>
-            <button onClick={() => handleUpdate(editingId)} style={{ padding: '8px 16px', backgroundColor: 'green', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>
+            <button onClick={() => handleUpdate(editingId)} className="btn btn-success">
               Save
             </button>
-            <button onClick={handleCancelEdit} style={{ padding: '8px 16px', marginLeft: '10px', backgroundColor: 'red', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>
+            <button onClick={handleCancelEdit} className="btn btn-danger">
               Cancel
             </button>
           </>
         ) : (
-          <button onClick={handleInsert} style={{ padding: '8px 16px', backgroundColor: 'blue', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>
+          <button onClick={handleInsert} className="btn btn-primary">
             Add
           </button>
         )}
       </div>
 
-      {/* Display fetched data */}
-      <ul>
+      <ul className="list">
         {data.map((item) => (
-          <li key={item.id} style={{ marginBottom: '20px' }}>
+          <li key={item.id} className="list-item">
             <span>{item.name} - {item.address} - {item.phone_number} - {item.relation}</span>
-            <button 
-              onClick={() => handleEdit(item)} 
-              style={{ marginLeft: '10px', padding: '8px 16px', backgroundColor: 'orange', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>
+            <button onClick={() => handleEdit(item)} className="btn btn-warning">
               Edit
             </button>
-            <button 
-              onClick={() => handleDelete(item.id)} 
-              style={{ marginLeft: '10px', padding: '8px 16px', backgroundColor: 'red', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>
+            <button onClick={() => handleDelete(item.id)} className="btn btn-danger">
               Delete
             </button>
           </li>
         ))}
       </ul>
 
-      {/* Back button */}
-      <button 
-        onClick={() => navigate('/')} 
-        style={{
-          marginTop: "20px",
-          padding: "10px 20px",
-          backgroundColor: "blue",
-          color: "white",
-          border: "none",
-          borderRadius: "5px",
-          cursor: "pointer"
-        }}
-      >
+      <button onClick={() => navigate('/')} className="btn btn-primary">
         Back to Main Page
       </button>
     </div>

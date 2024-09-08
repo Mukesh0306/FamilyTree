@@ -1,56 +1,64 @@
 .mukesh-container {
-    text-align: center;
-    margin-top: 50px;
-  }
-  
-  .mukesh-input-container {
-    margin-bottom: 20px;
-  }
-  
-  .mukesh-input {
-    margin-right: 10px;
-    padding: 8px;
-    width: 200px;
-  }
-  
-  .mukesh-button {
-    padding: 8px 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .mukesh-button-add {
-    background-color: blue;
-    color: white;
-  }
-  
-  .mukesh-button-update {
-    background-color: green;
-    color: white;
-  }
-  
-  .mukesh-button-delete,
-  .mukesh-button-cancel {
-    background-color: red;
-    color: white;
-  }
-  
-  .mukesh-button-edit {
-    background-color: orange;
-    color: white;
-  }
-  
-  .mukesh-list-item {
-    margin-bottom: 20px;
-  }
-  
-  .mukesh-button-back {
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: blue;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  color: #333;
+  text-align: center;
+}
+
+.mukesh-input-container {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.mukesh-input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.mukesh-button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.mukesh-button-add { background-color: #4CAF50; color: white; }
+.mukesh-button-update { background-color: #2196F3; color: white; }
+.mukesh-button-cancel { background-color: #f44336; color: white; }
+.mukesh-button-edit { background-color: #FFC107; color: black; }
+.mukesh-button-delete { background-color: #f44336; color: white; }
+.mukesh-button-back { background-color: #607D8B; color: white; }
+
+.mukesh-button:hover {
+  opacity: 0.8;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.mukesh-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.mukesh-list-item span {
+  flex: 1;
+}
+
+.mukesh-list-item button {
+  margin-left: 10px;
+}
