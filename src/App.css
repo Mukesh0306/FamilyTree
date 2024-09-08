@@ -1,35 +1,114 @@
-/* App.css */
+/* Base styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: 100vh;
+}
+
 .app-container {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
+  max-width: 100%;
+  padding: 1rem;
 }
 
-.nav-component {
-  width: 100%;
-  background-color: #f8f9fa;
-  padding: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1000;
+/* Navigation styles */
+nav {
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+/* Main content styles */
 .main-content {
   display: flex;
-  flex: 1;
-  margin-top: 60px; /* Adjust to ensure space for the navigation bar */
+  flex-direction: column;
+  gap: 1rem;
 }
 
-.left-side {
-  flex: 1;
-  padding: 10px;
-  overflow-y: auto;
+/* Component card styles */
+.component-card {
+  background-color: white;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.right-side {
-  flex: 1;
-  padding: 10px;
-  overflow-y: auto;
+.component-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* TreeBranches component styles */
+.tree-branches {
+  background-color: #e8f5e9;
+}
+
+/* SpeechRecog component styles */
+.speech-recog {
+  background-color: #e3f2fd;
+}
+
+/* Specific page styles */
+.specific-page {
+  background-color: white;
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Animated background */
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+body {
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+}
+
+/* Responsive styles */
+@media (min-width: 768px) {
+  .main-content {
+    flex-direction: row;
+  }
+
+  .main-content > * {
+    flex: 1;
+  }
+
+  /* Add any other desktop-specific styles here */
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  body {
+    background: linear-gradient(135deg, #2c3e50 0%, #4ca1af 100%);
+    color: #f5f5f5;
+  }
+
+  .component-card, .specific-page {
+    background-color: #34495e;
+    color: #f5f5f5;
+  }
+
+  nav {
+    background-color: rgba(52, 73, 94, 0.8);
+  }
+
+  .tree-branches {
+    background-color: #2c3e50;
+  }
+
+  .speech-recog {
+    background-color: #2c3e50;
+  }
 }
