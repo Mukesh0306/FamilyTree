@@ -1,42 +1,39 @@
-/* Nav.css */
-
 .nav-component {
-	background-color: rgb(76, 83, 139) !important; /* Light blue background for the nav */
-	padding: 10px 20px; /* Padding for nav */
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Shadow effect */
-	width: 100%; /* Full width */
-	position: fixed; /* Fixes the nav at the top */
-	top: 0;
-	left: 0;
-	z-index: 1000; /* Stays above other content */
+	display: flex;
+	align-items: center;
+	overflow: hidden;
+	white-space: nowrap;
+	background-color: #f0f0f0;
+	padding: 10px;
   }
   
-  .nav-component ul {
-	list-style-type: none; /* Removes default bullet points */
-	margin: 0;
-	padding: 0;
-	display: flex; /* Flexbox for alignment */
-	justify-content: center; /* Center the items */
+  .home-button {
+	margin-right: 20px;
+	padding: 5px 10px;
+	background-color: #007bff;
+	color: white;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
   }
   
-  .nav-component li {
-	margin: 0 15px; /* Space between items */
+  .scrolling-text {
+	flex-grow: 1;
+	overflow: hidden;
   }
   
-  .nav-component a {
-	text-decoration: none; /* No underline for links */
-	color: rgb(76, 83, 139) !important; /* Orange text color for all links */
-	font-size: 16px; /* Font size */
-	font-weight: bold; /* Bold text */
-	padding: 8px 16px; /* Padding inside links */
-	border-radius: 4px; /* Rounded corners */
-	background-color: #f5f3f2 !important; /* Light blue background for all links */
-	transition: background-color 0.3s, color 0.3s; /* Smooth color transition */
+  .scrolling-text::after {
+	content: 'Family Tree';
+	display: inline-block;
+	padding-left: 100%;
+	animation: scroll 15s linear infinite;
   }
   
-  
-  .nav-component a:hover {
-	background-color: #faf7f6 !important; /* Slightly darker light blue on hover */
-	color: #69615f !important; /* Orange text color on hover */
+  @keyframes scroll {
+	0% {
+	  transform: translate(0, 0);
+	}
+	100% {
+	  transform: translate(-100%, 0);
+	}
   }
-  
