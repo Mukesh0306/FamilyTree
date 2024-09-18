@@ -45,9 +45,7 @@ const Parents = () => {
   };
 
   const handleUpdate = async (id) => {
-    console.log('handleUpdate called with id:', id);
     if (name && address && phoneNumber && relation) {
-      console.log('Updating with data:', { name, address, phoneNumber, relation });
       try {
         const { data, error } = await supabase
           .from('Parents')
@@ -59,7 +57,6 @@ const Parents = () => {
           console.error('Error updating data:', error.message, error.details);
           alert('Failed to update: ' + error.message);
         } else {
-          console.log('Update successful, returned data:', data);
           setEditingId(null);
           setName('');
           setAddress('');
@@ -72,13 +69,11 @@ const Parents = () => {
         alert('An unexpected error occurred during update');
       }
     } else {
-      console.log('Update cancelled: empty fields');
       alert('Please fill in all fields.');
     }
   };
 
   const handleEdit = (item) => {
-    console.log('handleEdit called with item:', item);
     setEditingId(item.id);
     setName(item.name);
     setAddress(item.address);
@@ -87,7 +82,6 @@ const Parents = () => {
   };
 
   const handleCancelEdit = () => {
-    console.log('handleCancelEdit called');
     setEditingId(null);
     setName('');
     setAddress('');
@@ -96,19 +90,16 @@ const Parents = () => {
   };
 
   const handleDelete = async (id) => {
-    console.log('handleDelete called with id:', id);
     try {
-      const { data, error } = await supabase
+      const { error } = await supabase
         .from('Parents')
         .delete()
-        .eq('id', id)
-        .select();
+        .eq('id', id);
       
       if (error) {
         console.error('Error deleting data:', error.message, error.details);
         alert('Failed to delete: ' + error.message);
       } else {
-        console.log('Delete successful, returned data:', data);
         fetchData();
       }
     } catch (error) {
@@ -118,75 +109,69 @@ const Parents = () => {
   };
 
   return (
-    <div className="container">
-      <h1 className="title">Parents</h1>
+    <div className="parents-container">
+      <h1 className="parents-title">Parents</h1>
 
-      <div className="input-container">
+      <div className="parents-input-container">
         <input 
           type="text" 
           placeholder="Enter Name" 
           value={name} 
           onChange={(e) => setName(e.target.value)} 
-          className="input-field"
+          className="parents-input"
         />
         <input 
           type="text" 
           placeholder="Enter Address" 
           value={address} 
           onChange={(e) => setAddress(e.target.value)} 
-          className="input-field"
+          className="parents-input"
         />
         <input 
           type="text" 
           placeholder="Enter Phone Number" 
           value={phoneNumber} 
           onChange={(e) => setPhoneNumber(e.target.value)} 
-          className="input-field"
+          className="parents-input"
         />
         <input 
           type="text" 
           placeholder="Enter Relation" 
           value={relation} 
           onChange={(e) => setRelation(e.target.value)} 
-          className="input-field"
+          className="parents-input"
         />
         {editingId ? (
           <>
-            <button onClick={() => handleUpdate(editingId)} className="btn btn-success">
+            <button onClick={() => handleUpdate(editingId)} className="parents-button parents-button-success">
               Save
             </button>
-            <button onClick={handleCancelEdit} className="btn btn-danger">
+            <button onClick={handleCancelEdit} className="parents-button parents-button-danger">
               Cancel
             </button>
           </>
         ) : (
-          <button onClick={handleInsert} className="btn btn-primary">
+          <button onClick={handleInsert} className="parents-button parents-button-primary">
             Add
           </button>
         )}
       </div>
 
-      <ul className="list">
+      <ul className="parents-list">
         {data.map((item) => (
-          <li key={item.id} className="list-item">
+          <li key={item.id} className="parents-list-item">
             <span>{item.name} - {item.address} - {item.phone_number} - {item.relation}</span>
-            <button onClick={() => {
-              console.log('Edit button clicked for item:', item);
-              handleEdit(item);
-            }} className="btn btn-warning">
+            <button onClick={() => handleEdit(item)} className="parents-button parents-button-warning">
               Edit
             </button>
-            <button onClick={() => {
-              console.log('Delete button clicked for id:', item.id);
-              handleDelete(item.id);
-            }} className="btn btn-danger">
+            <button onClick={() => handleDelete(item.id)} className="parents-button parents-button-danger">
               Delete
             </button>
           </li>
         ))}
       </ul>
 
-      <button onClick={() => navigate('/')} className="btn btn-primary">
+      <button onClick={() => navigate('/')} className="parents-button parents-button-primary">
         Back to Main Page
       </button>
     </div>

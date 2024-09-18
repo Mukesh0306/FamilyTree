@@ -1,53 +1,109 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './Manjunath.css';
 
 const Manjunath = () => {
   const navigate = useNavigate();
+  const [note, setNote] = useState('');
+  const [notes, setNotes] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+
+  useEffect(() => {
+    fetchNotes();
+  }, []);
+
+  const fetchNotes = async () => {
+    try {
+      const response = await fetch('/api/notes');
+      const data = await response.json();
+      setNotes(data);
+    } catch (error) {
+      console.error('Error fetching notes:', error);
+    }
+  };
+
+  const handleNoteChange = (event) => {
+    setNote(event.target.value);
+  };
+
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const handleAddNote = async () => {
+    if (note.trim() === '') return;
+
+    try {
+      const response = await fetch('/api/notes', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ text: note }),
+      });
+      const data = await response.json();
+      setNotes([data, ...notes]);
+      setNote('');
+    } catch (error) {
+      console.error('Error adding note:', error);
+    }
+  };
+
+  const handleDeleteNote = async (id) => {
+    try {
+      await fetch(`/api/notes/${id}`, {
+        method: 'DELETE',
+      });
+      const updatedNotes = notes.filter(note => note.id !== id);
+      setNotes(updatedNotes);
+    } catch (error) {
+      console.error('Error deleting note:', error);
+    }
+  };
 
   const handleBackClick = () => {
     navigate('/');
   };
 
+  // Filter notes based on the search term
+  const filteredNotes = notes.filter(note =>
+    note.text.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
-    <div style={styles.container}>
-      <h1 style={styles.title}>Manjunath</h1>
-      
-      <button 
-        onClick={handleBackClick} 
-        style={styles.button}
-      >
+    <div className="container">
+      <h1 className="title">Manjunath's Notes</h1>
+
+      <button onClick={handleBackClick} className="button">
         Back to Main Page
       </button>
+      
+      <textarea 
+        placeholder="Enter a note..." 
+        value={note}
+        onChange={handleNoteChange}
+        className="noteInput"
+      />
+      <button onClick={handleAddNote} className="button">Add Note</button>
+
+      <input 
+        type="text" 
+        placeholder="Search notes..." 
+        value={searchTerm}
+        onChange={handleSearchChange}
+        className="searchInput"
+      />
+      
+      <div className="notes">
+        {filteredNotes.map((note) => (
+          <div key={note.id} className="noteItem">
+            <p>{note.text}</p>
+            <button onClick={() => handleDeleteNote(note.id)} className="deleteButton">Delete</button>
+          </div>
+        ))}
+      </div>
     </div>
   );
-};
-
-const styles = {
-  container: {
-    textAlign: "center",
-    marginTop: "50px",
-    fontFamily: "Arial, sans-serif",
-    backgroundColor: "#f0f0f0",
-    padding: "30px",
-    borderRadius: "10px",
-    boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-  },
-  title: {
-    color: "#333",
-    fontSize: "2.5em",
-    marginBottom: "20px",
-  },
-  button: {
-    marginTop: "20px",
-    padding: "12px 24px",
-    backgroundColor: "#4CAF50",
-    color: "white",
-    border: "none",
-    borderRadius: "5px",
-    cursor: "pointer",
-    fontSize: "16px",
-    transition: "background-color 0.3s ease",
-  },
 };
 
 export default Manjunath;

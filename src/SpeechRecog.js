@@ -89,7 +89,7 @@ const SpeechRecog = () => {
       <textarea
         value={transcript}
         rows="3"
-        cols="100"
+        cols="30"
         readOnly
         style={{ marginTop: "20px" }}
       />
